@@ -13,8 +13,8 @@ filter:
   - name: "Project Difficulty"
     value: ["Beginner"]
 source:
-  - path: ../app.c
-  - path: ../main.c
+  - path: ../src/app.c
+  - path: ../src/main.c
 include:
   - path: ../inc
     file_list:

@@ -18,8 +18,21 @@
 /***************************************************************************//**
  * Initialize application.
  ******************************************************************************/
+
+#include "app_log.h"
+#include "em_rmu.h"
+#include "em_emu.h"
+
 void app_init(void)
 {
+  uint32_t reason = RMU_ResetCauseGet();
+#if defined(_EMU_RSTCAUSE_MASK)
+  uint32_t fromRegister = EMU->RSTCAUSE;
+#endif
+#if defined(_RMU_RSTCAUSE_MASK)
+  uint32_t fromRegister = RMU->RSTCAUSE;
+#endif
+  app_log("Board: %s, RSTCAUSE register: 0x%lx, RMU_ResetCauseGet() returns 0x%lx\n", SL_BOARD_NAME, fromRegister, reason);
 }
 
 /***************************************************************************//**

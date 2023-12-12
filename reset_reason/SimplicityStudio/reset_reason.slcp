@@ -25,6 +25,9 @@ component:
   - id: emlib_rmu
   - instance: [vcom]
     id: iostream_usart
+  - id: app_log
+  - instance: [btn0]
+    id: simple_button
     
 define:
   - name: DEBUG_EFM

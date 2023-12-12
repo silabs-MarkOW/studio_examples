@@ -37,7 +37,7 @@ component:
   - id: app_log
   - instance: [vcom]
     id: iostream_usart
-  - id emlib_rmu
+  - id: emlib_rmu
   
 source:
   - path: ../src/main.c

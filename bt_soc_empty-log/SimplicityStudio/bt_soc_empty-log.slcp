@@ -34,8 +34,6 @@ component:
   - id: component_catalog
   - id: mpu
   - id: bt_post_build
-  - id: iostream_usart
-  - id: instance: [vcom]
 
 source:
   - path: ../src/main.c

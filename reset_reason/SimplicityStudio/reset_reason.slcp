@@ -1,0 +1,38 @@
+project_name: reset_reason
+package: platform
+quality: production
+label: Platform - RMU Reset Reason
+description: > 
+  This example displays reset reason directly from register, and via API.
+category: Example|Platform
+filter:
+  - name: "Device Type"
+    value: ["SoC"]
+  - name: "MCU"
+    value: ["32-bit MCU"]
+  - name: "Project Difficulty"
+    value: ["Beginner"]
+source:
+  - path: ../app.c
+  - path: ../main.c
+include:
+  - path: ../inc
+    file_list:
+    - path: ../inc/app.h
+component:
+  - id: sl_system
+  - id: device_init
+  - id: emlib_rmu
+  - instance: [vcom]
+    id iostream_usart
+    
+define:
+  - name: DEBUG_EFM
+
+configuration:
+  - name: SL_IOSTREAM_USART_VCOM_CONVERT_BY_DEFAULT_LF_TO_CRLF
+    value: "1"
+  - name: SL_IOSTREAM_USART_VCOM_RESTRICT_ENERGY_MODE_TO_ALLOW_RECEPTION
+    value: "0"
+  - name: SL_BOARD_ENABLE_VCOM
+    value: "1"

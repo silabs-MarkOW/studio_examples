@@ -31,6 +31,8 @@
 #include "app_assert.h"
 #include "sl_bluetooth.h"
 #include "app.h"
+#include "app_log.h"
+#include "em_rmu.h"
 
 // The advertising set handle allocated from Bluetooth stack.
 static uint8_t advertising_set_handle = 0xff;
@@ -38,18 +40,16 @@ static uint8_t advertising_set_handle = 0xff;
 /**************************************************************************//**
  * Application Init.
  *****************************************************************************/
-SL_WEAK void app_init(void)
+void app_init(void)
 {
-  /////////////////////////////////////////////////////////////////////////////
-  // Put your additional application init code here!                         //
-  // This is called once during start-up.                                    //
-  /////////////////////////////////////////////////////////////////////////////
+  uint32_t reason = RMU_ResetCauseGet();
+  app_log("RMU_ResetCauseGet() returns 0x%lx\n", reason);
 }
 
 /**************************************************************************//**
  * Application Process Action.
  *****************************************************************************/
-SL_WEAK void app_process_action(void)
+void app_process_action(void)
 {
   /////////////////////////////////////////////////////////////////////////////
   // Put your additional application code here!                              //

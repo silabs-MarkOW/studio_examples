@@ -15,4 +15,14 @@
     <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
     <properties key="filters" value="Device\ Type|SoC Project\ Difficulty|Beginner Wireless\ Technology|Bluetooth"/>
   </descriptors>
+  <descriptors name="reset_reason" label="RMU Reset Reason" description="This example project shows an empty configuration that can be used as a starting point to add components and functionality.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="ideCompatibility" value="simplicity-ide"/>
+    <properties key="template.projectFilePaths" value="reset_reason/SimplicityStudio/reset_reason.slcp"/>
+    <properties key="core.boardCompatibility" value=".*"/>
+    <properties key="core.partCompatibility" value="(mcu.arm.ef[mr]32.*|mcu.arm.wf.*)"/>
+    <properties key="category" value="Bluetooth Examples"/>
+    <properties key="quality" value="PRODUCTION"/>
+  </descriptors>
 </model:MDescriptors>

@@ -40,7 +40,7 @@ source:
   - path: ../src/app.c
 
 include:
-  - path: .
+  - path: ../inc
     file_list:
       - path: ../inc/app.h
 

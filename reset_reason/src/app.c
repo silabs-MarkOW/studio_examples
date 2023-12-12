@@ -22,6 +22,9 @@
 #include "app_log.h"
 #include "em_rmu.h"
 #include "em_emu.h"
+#include "sl_simple_button_instances.h"
+
+volatile bool button_event = false;
 
 void app_init(void)
 {
@@ -32,7 +35,18 @@ void app_init(void)
 #if defined(_RMU_RSTCAUSE_MASK)
   uint32_t fromRegister = RMU->RSTCAUSE;
 #endif
-  app_log("Board: %s, RSTCAUSE register: 0x%lx, RMU_ResetCauseGet() returns 0x%lx\n", SL_BOARD_NAME, fromRegister, reason);
+  app_log("Board: %s, RSTCAUSE reg: 0x%lx, RMU_ResetCauseGet(): 0x%lx\n", SL_BOARD_NAME, fromRegister, reason);
+  sl_simple_button_init(&sl_button_btn0);
+  sl_simple_button_enable(&sl_button_btn0);
+}
+
+void sl_button_on_change(const sl_button_t *handle)
+{
+  if(handle->get_state(handle)) { // print message of press, reset on release
+      button_event = true;
+  } else {
+      NVIC_SystemReset();
+  }
 }
 
 /***************************************************************************//**
@@ -40,4 +54,8 @@ void app_init(void)
  ******************************************************************************/
 void app_process_action(void)
 {
+  if(button_event) {
+      app_log("Button pressed, issuing software reset\n");
+      button_event = false;
+  }
 }

@@ -10,6 +10,20 @@
 #define PORT_RAC_RX (gpioPortA)
 #define PIN_RAC_RX (7u)
 
+#ifdef PRS_ASYNC_CH_CTRL_SOURCESEL_RAC
+#  define SOURCESEL (PRS_ASYNC_CH_CTRL_SOURCESEL_RAC)
+#  define SIGSELTX (PRS_ASYNC_CH_CTRL_SIGSEL_RACTX)
+#  define SIGSELRX (PRS_ASYNC_CH_CTRL_SIGSEL_RACRX)
+#else
+#  ifdef PRS_ASYNC_CH_CTRL_SOURCESEL_RACL
+#    define SOURCESEL (PRS_ASYNC_CH_CTRL_SOURCESEL_RAC)
+#    define SIGSELTX (PRS_ASYNC_CH_CTRL_SIGSEL_RACLTX)
+#    define SIGSELRX (PRS_ASYNC_CH_CTRL_SIGSEL_RACLRX)
+#  else
+#    error Find  SOURCESEL/SIGSEL define for your device
+#  endif
+#endif
+
 #define P(X) app_log(#X ":%p\n",X);
 #define Pd(X) app_log(#X ":%d\n",X);
 
@@ -27,7 +41,7 @@ void prs_rac_init(void) {
  P(addr += rxChannel);
  *addr = ((uint32_t) PORT_RAC_TX << _GPIO_PRS_ASYNCH0ROUTE_PORT_SHIFT)
      | ((uint32_t) PIN_RAC_RX << _GPIO_PRS_ASYNCH0ROUTE_PIN_SHIFT);
- PRS_SourceAsyncSignalSet(rxChannel, PRS_ASYNC_CH_CTRL_SOURCESEL_RACL, PRS_ASYNC_CH_CTRL_SIGSEL_RACLRX);
+ PRS_SourceAsyncSignalSet(rxChannel, SOURCESEL, SIGSELRX);
  GPIO->PRSROUTE[0].ROUTEEN |= 0x1 << (rxChannel + _GPIO_PRS_ROUTEEN_ASYNCH0PEN_SHIFT);
 
  Pd(txChannel = PRS_GetFreeChannel(prsTypeAsync));
@@ -37,7 +51,7 @@ void prs_rac_init(void) {
  P(addr += txChannel);
  *addr = ((uint32_t) PORT_RAC_TX << _GPIO_PRS_ASYNCH0ROUTE_PORT_SHIFT)
      | ((uint32_t) PIN_RAC_TX << _GPIO_PRS_ASYNCH0ROUTE_PIN_SHIFT);
- PRS_SourceAsyncSignalSet(txChannel, PRS_ASYNC_CH_CTRL_SOURCESEL_RACL, PRS_ASYNC_CH_CTRL_SIGSEL_RACLTX);
+ PRS_SourceAsyncSignalSet(txChannel, SOURCESEL, SIGSELTX);
  GPIO->PRSROUTE[0].ROUTEEN |= 0x1 << (txChannel + _GPIO_PRS_ROUTEEN_ASYNCH0PEN_SHIFT);
 
  Pd(PRS_GetFreeChannel(prsTypeAsync));

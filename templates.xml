@@ -53,7 +53,7 @@
     <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
     <properties key="filters" value="Device\ Type|SoC Project\ Difficulty|Beginner Wireless\ Technology|Bluetooth"/>
   </descriptors>
-  <descriptors name="bt_soc_show_bootloader" label="Bluetooth - NCP with PTI" description="Bluetooth - SoC Empty with VCOM and show bootloader">
+  <descriptors name="bt_soc_show_bootloader" label="Bluetooth - SoC Empty with VCOM and show bootloader" description="Bluetooth - SoC Empty with VCOM and show bootloader">
     <properties key="namespace" value="template.uc"/>
     <properties key="keywords" value="universal\ configurator"/>
     <properties key="projectFilePaths" value="bt_soc_show_bootloader/SimplicityStudio/bt_soc_show_bootloader.slcp"/>

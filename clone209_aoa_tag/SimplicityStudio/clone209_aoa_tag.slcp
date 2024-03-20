@@ -64,9 +64,9 @@ configuration:
   - name: SL_HEAP_SIZE
     value: "9200"
   - name: SL_BT_CONFIG_MAX_CONNECTIONS
-    value "1"
+    value: "1"
   - name: SL_BT_CONFIG_USER_ADVERTISERS
-    value "2"
+    value: "2"
   - name: SL_PSA_KEY_USER_SLOT_COUNT
     value: "0"
     condition:

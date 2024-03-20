@@ -21,7 +21,6 @@ size_t ad_data_available(struct ad_data_s *ad_data);
 void ad_data_clear(struct ad_data_s *ad_data);
 bool ad_data_add_flags(struct ad_data_s *ad_data, uint8_t flags);
 bool ad_data_add_complete_name(struct ad_data_s *ad_data, const char *name);
-bool ad_data_add_eddystone(struct ad_data_s *ad_data, uint8_t *frame, uint8_t len);
 bool ad_data_add_eddystone_uid(struct ad_data_s *ad_data, uint8_t ranging_data, const char *nid, uint8_t bid[6]);
 bool ad_data_add_incomplete_16bit_services(struct ad_data_s *ad_data, uint16_t *services, uint8_t count);
 bool ad_data_add_incomplete_128bit_services(struct ad_data_s *ad_data, uint8_t services[][16], size_t count);

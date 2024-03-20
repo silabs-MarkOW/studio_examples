@@ -38,7 +38,7 @@ void ad_data_clear(struct ad_data_s *ad_data) {
 }
 
 bool ad_data_add_complete_name(struct ad_data_s *ad_data, const char *name) {
-  uint8_t len = strlen(name);
+  size_t len = strlen(name);
   if(ad_data_available(ad_data) < (2+len)) return false;
   ad_data->data[ad_data->len++] = 1+len;
   ad_data->data[ad_data->len++] = 0x09;
@@ -47,7 +47,7 @@ bool ad_data_add_complete_name(struct ad_data_s *ad_data, const char *name) {
   return true;
 }
 
-bool ad_data_add_eddystone(struct ad_data_s *ad_data, uint8_t *frame, uint8_t len) {
+bool ad_data_add_eddystone(struct ad_data_s *ad_data, uint8_t *frame, size_t len) {
   if(ad_data_available(ad_data) < (4+len)) return false;
   uint16_t uuid = 0xfeaa;
   ad_data->data[ad_data->len++] = 3+len;
@@ -78,7 +78,7 @@ bool ad_data_add_eddystone_uid(struct ad_data_s *ad_data, uint8_t ranging_data, 
 }
 
 bool ad_data_add_incomplete_16bit_services(struct ad_data_s *ad_data, uint16_t *services, uint8_t count) {
-  uint8_t len = count << 1;
+  size_t len = count << 1;
   if(ad_data_available(ad_data) < (2+len)) return false;
   ad_data->data[ad_data->len++] = 1+len;
   ad_data->data[ad_data->len++] = 0x03;
@@ -89,7 +89,6 @@ bool ad_data_add_incomplete_16bit_services(struct ad_data_s *ad_data, uint16_t *
 
 bool ad_data_add_incomplete_128bit_services(struct ad_data_s *ad_data, uint8_t services[][16], size_t count) {
   size_t len = count << 4;
-  printf("len: %d, allocated:%d, len: %d\n",len,ad_data->allocated,ad_data->len);
   if(ad_data_available(ad_data) < (2+len)) return false;
   ad_data->data[ad_data->len++] = 1+len;
   ad_data->data[ad_data->len++] = 0x07;

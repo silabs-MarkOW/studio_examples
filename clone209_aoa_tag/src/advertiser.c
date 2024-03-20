@@ -3,7 +3,6 @@
 #include "app_assert.h"
 #include "sl_bt_api.h"
 #include "ad_data.h"
-#include "dump-bt7v0p1.h"
 
 #define PERIODIC_PAYLOAD_MAX_SIZE 64
 
@@ -109,6 +108,13 @@ void update_extended_private_address(void) {
   start_extended_and_periodic_advertisement();
 }
 
+void start_legacy_advertisement(void) {
+  sl_status_t sc;
+  sc = sl_bt_legacy_advertiser_start(legacy_set,
+                                     sl_bt_legacy_advertiser_connectable);
+  app_assert_status(sc);
+}
+
 void initialize_legacy_advertiser(const char *device_name) {
   sl_status_t sc;
   bd_addr dummy; // API requires location to store actual address used
@@ -141,10 +147,7 @@ void initialize_legacy_advertiser(const char *device_name) {
   sc = sl_bt_advertiser_set_timing(legacy_set, interval, interval, 0, 0);
   app_assert_status(sc);
 
-  // start connectable, scannable legacy advertisement
-  sc = sl_bt_legacy_advertiser_start(legacy_set,
-				     sl_bt_legacy_advertiser_connectable);
-  app_assert_status(sc);
+  start_legacy_advertisement();
 }
 
 void initialize_extended_advertiser(const char *device_name) {
@@ -216,7 +219,7 @@ void initialize_advertisers() {
 					      device_name);
   app_assert_status(sc);
   device_name[len] = 0;
-  initialize_legacy_advertiser((const char *)device_name);
+  //initialize_legacy_advertiser((const char *)device_name);
   initialize_extended_advertiser((const char *)device_name);
 }
 

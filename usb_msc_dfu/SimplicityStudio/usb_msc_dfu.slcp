@@ -38,7 +38,7 @@ configuration:
   - name: configTOTAL_HEAP_SIZE
     value: 40000  
 readme:
-  - path: readme.md
+  - path: ../readme.md
 tag:
   - hardware:component:usb
 ui_hints:

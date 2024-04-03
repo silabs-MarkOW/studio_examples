@@ -17,7 +17,7 @@ source:
   - path: ../src/app.c
   - path: ../src/main.c
 include:
-  - path: .
+  - path: ../inc
     file_list:
     - path: ../inc/app.h
 component:

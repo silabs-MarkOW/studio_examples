@@ -24,10 +24,10 @@ component:
   - id: sl_system
   - id: device_init
   - id: freertos
-  - id: usb_device_configuration
-    instance: [config0]
-  - id: usb_device_class_scsi
-    instance: [msc_scsi]
+  - instance: [config0]
+    id: usb_device_configuration
+  - instance: [msc_scsi]
+    id: usb_device_class_scsi
   - id: app_assert
   - id: app_log
   - instance: [vcom]
@@ -38,6 +38,12 @@ define:
 configuration:
   - name: configTOTAL_HEAP_SIZE
     value: 40000  
+  - name: SL_IOSTREAM_USART_VCOM_CONVERT_BY_DEFAULT_LF_TO_CRLF
+    value: "1"
+  - name: SL_IOSTREAM_USART_VCOM_RESTRICT_ENERGY_MODE_TO_ALLOW_RECEPTION
+    value: "0"
+  - name: SL_BOARD_ENABLE_VCOM
+    value: "1"
 readme:
   - path: ../readme.md
 tag:

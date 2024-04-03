@@ -167,7 +167,6 @@ void app_init(void)
   image = malloc(512*512);
   app_assert(image,"malloc failure\r\n");
   app_log("app_init()\r\n");
-  usb_device_hid_app_init();
   sc = sl_usbd_msc_scsi_lun_add(sl_usbd_msc_scsi_msc_scsi_number, &info, &lun);
   app_assert_status(sc);//,"[%x] sl_usbd_msc_scsi_lun_add failed\r\n");
 }

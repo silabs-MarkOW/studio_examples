@@ -119,4 +119,29 @@
     <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
     <properties key="filters" value="Device\ Type|SoC Project\ Difficulty|Advanced"/>
   </descriptors>
+  <descriptors name="protected_apploader_ota" label="Community Support - Example of handling AppLoader OTA DFU from a (previously) bonded device" description="Demonstrates method of allowing for AppLoader OTA DFU initialization only to devices which have previously bonded and while operator has physical access to device on connection initiating OTA.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="solutionReferenceId" value="app.bluetooth.example.bt_soc_empty.bt_soc_empty.slcp"/>
+    <properties key="projectFilePaths" value="protected_apploader_ota/SimplicityStudio/protected_apploader_ota.slcp"/>
+    <properties key="readmeFiles" value="protected_apploader_ota/readme.md"/>
+    <properties key="boardCompatibility" value="brd4182a brd4183a brd4183b brd4183c brd4184a brd4184b brd4310a brd4311a brd4311b brd4312a com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32[bm]g22.* .*[bm]gm22.*"/>
+    <properties key="ideCompatibility" value="generic-template iar-embedded-workbench makefile-ide simplicity-ide visual-studio-code visual-studio-code-cmake"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Bluetooth Examples"/>
+    <properties key="quality" value="EXPERIMENTAL"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+    <properties key="filters" value="Device\ Type|SoC Project\ Difficulty|Beginner Wireless\ Technology|Bluetooth"/>
+  </descriptors>
+  <descriptors name="reset_reason" label="RMU Reset Reason" description="This example project shows an empty configuration that can be used as a starting point to add components and functionality.">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="ideCompatibility" value="simplicity-ide"/>
+    <properties key="template.projectFilePaths" value="reset_reason/SimplicityStudio/reset_reason.slcp"/>
+    <properties key="core.boardCompatibility" value=".*"/>
+    <properties key="core.partCompatibility" value="(mcu.arm.ef[mr]32.*|mcu.arm.wf.*)"/>
+    <properties key="category" value="Bluetooth Examples"/>
+    <properties key="quality" value="PRODUCTION"/>
+  </descriptors>
 </model:MDescriptors>

@@ -2,9 +2,7 @@ project_name: protected_apploader_ota
 package: Bluetooth
 label: Community Support - Example of handling AppLoader OTA DFU from a (previously) bonded device
 description: >
-  A minimal project structure, that serves as a starting point for custom
-  Bluetooth applications. The application starts advertising after boot and
-  restarts advertising after a connection is closed.
+  Demonstrates method of allowing for AppLoader OTA DFU initialization only to devices which have previously bonded and while operator has physical access to device on connection initiating OTA.
 category: Bluetooth Examples
 quality: experimental
 filter:

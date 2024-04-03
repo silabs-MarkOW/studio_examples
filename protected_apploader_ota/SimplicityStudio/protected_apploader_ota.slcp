@@ -49,7 +49,7 @@ config_file:
   - override:
       component: gatt_configuration
       file_id: gatt_configuration_file_id
-    path: gatt_configuration.btconf
+    path: ../config/gatt_configuration.btconf
     directory: btconf
 readme:
   - path: ../readme.md

@@ -14,7 +14,6 @@
  * sections of the MSLA applicable to Source Code.
  *
  ******************************************************************************/
-#include "usb_hid_app.h"
 #include "app_log.h"
 #include "sl_usbd_class_msc_scsi.h"
 #include "sl_usbd_class_msc_scsi_instances.h"

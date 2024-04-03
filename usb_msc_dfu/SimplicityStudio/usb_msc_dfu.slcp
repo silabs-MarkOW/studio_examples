@@ -14,12 +14,12 @@ filter:
   - name: "Project Difficulty"
     value: ["Advanced"]
 source:
-  - path: app.c
-  - path: main.c
+  - path: ../src/app.c
+  - path: ../src/main.c
 include:
   - path: .
     file_list:
-    - path: app.h
+    - path: ../inc/app.h
 component:
   - id: sl_system
   - id: device_init

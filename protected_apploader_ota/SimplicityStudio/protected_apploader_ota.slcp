@@ -18,6 +18,7 @@ component:
   - id: gatt_service_device_information
   - id: bluetooth_feature_legacy_advertiser
   - id: bluetooth_feature_connection
+  - id: bluetooth_feature_gatt
   - id: bluetooth_feature_gatt_server
   - id: bluetooth_feature_sm
   - id: bluetooth_feature_system
@@ -42,6 +43,8 @@ include:
   - path: ../inc
     file_list:
       - path: ../inc/app.h
+      - path: ../inc/log.h
+      - path: ../inc/external_signals.h
 config_file:
   - override:
       component: gatt_configuration

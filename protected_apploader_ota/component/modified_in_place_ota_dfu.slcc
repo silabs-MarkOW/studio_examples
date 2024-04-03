@@ -1,0 +1,40 @@
+id: modified_in_place_ota_dfu
+label: Modified In-Place OTA DFU
+package: Bluetooth
+description: >
+  Modificaion of SDK In-Place OTA DFU component to handle deletion of bonding
+  data before triggering reset.
+category: Bluetooth|OTA
+quality: experimental
+root_path: app/bluetooth/common/in_place_ota_dfu
+config_file:
+  - path: in_place_ota_dfu.xml
+    directory: btconf
+
+include:
+  - path: .
+    file_list:
+      - path: sl_bt_in_place_ota_dfu.h
+
+source:
+  - path: sl_bt_in_place_ota_dfu.c
+provides:
+  - name: modified_in_place_ota_dfu
+conflicts:
+  - name: app_ota_dfu
+requires:
+  - name: app_assert
+  - name: apploader
+  - name: apploader_util
+  - name: bluetooth_feature_connection
+  - name: bluetooth_feature_gatt_server
+  - name: bluetooth_feature_system
+  - name: bluetooth_stack
+  - name: bootloader_interface
+  - name: gatt_configuration
+template_contribution:
+  - name: bluetooth_on_event
+    value:
+      include: sl_bt_in_place_ota_dfu.h
+      function: sl_bt_in_place_ota_dfu_on_event
+    priority: -9000

@@ -1,6 +1,7 @@
 project_name: usb_msc_dfu
 package: platform
-quality: experimentallabel: Community Support - Example of USB MSC bootloader
+quality: experimental
+label: Community Support - Example of USB MSC bootloader
 description: > 
   This example uses the USB stack HID Class with the FreeRTOS kernel to emulate a mouse. 
   Once the usb device is connected to a computer, it will trigger continuous mouse mouvements.

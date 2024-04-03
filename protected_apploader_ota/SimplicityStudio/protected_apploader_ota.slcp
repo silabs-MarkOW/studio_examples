@@ -20,10 +20,9 @@ component:
   - id: bluetooth_feature_connection
   - id: bluetooth_feature_gatt
   - id: bluetooth_feature_gatt_server
-  - id: bluetooth_feature_legacy_scanner
   - id: bluetooth_feature_sm
   - id: bluetooth_feature_system
-  - id: in_place_ota_dfu
+  - id: modified_in_place_ota_dfu
   - id: bootloader_interface
   - id: rail_util_pti
   - id: app_assert
@@ -53,6 +52,8 @@ config_file:
     directory: btconf
 readme:
   - path: ../readme.md
+other_file:
+  - path: ../component/modified_in_place_ota.slcc
 configuration:
   - name: SL_STACK_SIZE
     value: "2752"

@@ -27,7 +27,7 @@ component:
   - instance: [config0]
     id: usb_device_configuration
   - instance: [msc_scsi]
-    id: usb_device_class_scsi
+    id: usb_device_class_msc_scsi
   - id: app_assert
   - id: app_log
   - instance: [vcom]

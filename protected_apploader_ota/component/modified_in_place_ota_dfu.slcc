@@ -6,22 +6,22 @@ description: >
   data before triggering reset.
 category: Bluetooth|OTA
 quality: experimental
-root_path: app/bluetooth/common/in_place_ota_dfu
 config_file:
-  - path: in_place_ota_dfu.xml
+  - path: ../in_place_ota_dfu.xml
     directory: btconf
 
 include:
   - path: .
     file_list:
-      - path: sl_bt_in_place_ota_dfu.h
+      - path: ../inc/modified_in_place_ota_dfu.h
 
 source:
-  - path: sl_bt_in_place_ota_dfu.c
+  - path: ../src/modified_in_place_ota_dfu.c
 provides:
   - name: modified_in_place_ota_dfu
 conflicts:
   - name: app_ota_dfu
+  - name in_place_ota_dfu
 requires:
   - name: app_assert
   - name: apploader

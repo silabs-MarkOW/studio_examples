@@ -39,6 +39,7 @@ component:
 source:
   - path: ../src/main.c
   - path: ../src/app.c
+  - path: ../src/button_press.c
 include:
   - path: ../inc
     file_list:

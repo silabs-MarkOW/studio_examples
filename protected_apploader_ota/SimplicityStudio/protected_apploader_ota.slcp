@@ -22,7 +22,8 @@ component:
   - id: bluetooth_feature_gatt_server
   - id: bluetooth_feature_sm
   - id: bluetooth_feature_system
-  - id: modified_in_place_ota_dfu
+  - id: apploader
+  - id: apploader_util
   - id: bootloader_interface
   - id: rail_util_pti
   - id: app_assert

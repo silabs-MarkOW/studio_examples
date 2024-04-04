@@ -50,10 +50,11 @@ config_file:
       file_id: gatt_configuration_file_id
     path: ../config/gatt_configuration.btconf
     directory: btconf
+  - path: ../in_place_ota_dfu.xml
+    directory: btconf
+
 readme:
   - path: ../readme.md
-other_file:
-  - path: ../component/modified_in_place_ota_dfu.slcc
 configuration:
   - name: SL_STACK_SIZE
     value: "2752"

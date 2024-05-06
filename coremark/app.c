@@ -18,15 +18,25 @@
 #include <stdio.h>
 #include "em_cmu.h"
 
-void CoreMark_Main(void);
+unsigned int CoreMark_Main(void);
+extern void *_printf_float;
 /***************************************************************************//**
  * Initialize application.
  ******************************************************************************/
 void app_init(void)
 {
-  printf("CORE frequency: %d\n",CMU_ClockFreqGet(cmuClock_CORE));
+  unsigned int total_ticks;
+  (void)_printf_float;
+  double Hz = CMU_ClockFreqGet(cmuClock_CORE);
+  double MHz = Hz*1e-6;
+  printf("CORE frequency: %.0f\n",Hz);
   printf("Calling Coremark_Main()\n");
-  CoreMark_Main();
+  total_ticks = CoreMark_Main();
+  double elapsed = total_ticks / Hz;
+  double coremark = ITERATIONS / elapsed;
+  printf("Elapsed time: %.2f\n",elapsed);
+  printf("Coremark: %.2f Iterations/s\n",coremark);
+  printf("Coremark/MHz: %.3f\n",coremark/MHz);
 }
 
 /***************************************************************************//**

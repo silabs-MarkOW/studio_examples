@@ -17,14 +17,14 @@
 
 #include <stdio.h>
 
-void Coremark_Main(void);
+void CoreMark_Main(void);
 /***************************************************************************//**
  * Initialize application.
  ******************************************************************************/
 void app_init(void)
 {
   printf("Calling Coremark_Main()\n");
-  Coremark_Main(void);
+  CoreMark_Main();
 }
 
 /***************************************************************************//**

@@ -16,6 +16,7 @@
  ******************************************************************************/
 
 #include <stdio.h>
+#include "em_cmu.h"
 
 void CoreMark_Main(void);
 /***************************************************************************//**
@@ -23,6 +24,7 @@ void CoreMark_Main(void);
  ******************************************************************************/
 void app_init(void)
 {
+  printf("CORE frequency: %d\n",CMU_ClockFreqGet(cmuClock_CORE));
   printf("Calling Coremark_Main()\n");
   CoreMark_Main();
 }

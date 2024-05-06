@@ -73,12 +73,12 @@ void efm32_timerInit(void)
   CMU_ClockEnable(cmuClock_TIMER0, true);
   CMU_ClockEnable(cmuClock_TIMER1, true);
 #endif
+  TIMER_Init( TIMER0, &timerInit ); // these are reversed in SDK
   TIMER_TopSet(TIMER0, 0xFFFF);
-  TIMER_Init( TIMER0, &timerInit );
   timerInit.sync = true;
   timerInit.clkSel = timerClkSelCascade;
+  TIMER_Init( TIMER1, &timerInit ); // these are reversed in SDK
   TIMER_TopSet(TIMER1, 0xFFFF);
-  TIMER_Init( TIMER1, &timerInit );
 
 }
 
@@ -171,4 +171,10 @@ void portable_fini(core_portable *p)
 	p->portable_id=0;
 }
 
+void *portable_malloc(size_t size) {
+  return malloc(size);
+}
 
+void portable_free(void *p) {
+  free(p);
+}

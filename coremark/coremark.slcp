@@ -21,12 +21,6 @@ define:
   value: '1'
 - name: HAS_PRINTF
   value: '1'
-- name: efm32_timerInit
-  value: 'efm32_timerInitFixed'
-- name: portable_malloc
-  value: 'malloc'
-- name: portable_free
-  value: 'free'
 - name: MEM_METHOD
   value: '1'
 - name: ITERATIONS

@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='ASCII'?>
+<?xml version="1.0" encoding="ASCII"?>
 <model:MDescriptors xmlns:model="http://www.silabs.com/ss/Studio.ecore">
   <descriptors name="bt_soc_empty-log" label="Bluetooth - SoC Empty with log" description="Bluetooth - SoC Empty with added IO Stream USART and log components">
     <properties key="namespace" value="template.uc"/>

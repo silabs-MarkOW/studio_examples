@@ -3,6 +3,7 @@ component:
 - id: sl_system
 - id: device_init
 - id: coremark
+- id: timer
 - id: app-log
 - id: iostream_usart
   instance:
@@ -38,7 +39,7 @@ include:
 label: Community Support - Coremark
 package: platform
 project_name: coremark
-quality: demo
+quality: experimental
 readme:
 - path: readme.md
 source:

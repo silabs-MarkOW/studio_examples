@@ -145,10 +145,9 @@
     <properties key="quality" value="PRODUCTION"/>
   </descriptors>
   <descriptors name="coremark" label="Community Support - Coremark" description="Simple implenentation of Coremark">
-    <properties key="type" value="template"/>
-    <properties key="defaultName" value="coremark"/>
     <properties key="namespace" value="template.uc"/>
-    <properties key="ideCompatibility" value="generic-template makefile-ide simplicity-ide visual-studio-code"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="ideCompatibility" value="simplicity-ide"/>
     <properties key="template.projectFilePaths" value="coremark/coremark.slcp"/>
     <properties key="core.boardCompatibility" value=".*"/>
     <properties key="core.partCompatibility" value="-.*siwg91.* (mcu.arm.ef[mr]32.*|mcu.arm.wf.*)"/>

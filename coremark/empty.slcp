@@ -1,0 +1,48 @@
+category: Example|Platform
+component:
+- id: sl_system
+- id: device_init
+- id: coremark
+- id: app-log
+- id: iostream_usart
+  instance:
+  - vcom
+configuration:
+- name: SL_IOSTREAM_USART_VCOM_CONVERT_BY_DEFAULT_LF_TO_CRLF
+  value: '1'
+- name: SL_IOSTREAM_USART_VCOM_RESTRICT_ENERGY_MODE_TO_ALLOW_RECEPTION
+  value: '1'
+- name: SL_BOARD_ENABLE_VCOM
+  value: '1'
+define:
+- name: DEBUG_EFM
+- name: HAS_STDIO
+  value: '1'
+- name: HAS_PRINTF
+  value: '1'
+description: Simple implenentation of Coremark
+filter:
+- name: Device Type
+  value:
+  - SoC
+- name: MCU
+  value:
+  - 32-bit MCU
+- name: Project Difficulty
+  value:
+  - Beginner
+include:
+- file_list:
+  - path: app.h
+  path: .
+label: Community Support - Coremark
+package: platform
+project_name: coremark
+quality: demo
+readme:
+- path: readme.md
+source:
+- path: app.c
+- path: main.c
+ui_hints:
+  highlight: readme.md

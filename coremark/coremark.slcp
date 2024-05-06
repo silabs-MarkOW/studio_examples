@@ -3,7 +3,7 @@ component:
 - id: sl_system
 - id: device_init
 - id: coremark
-- id: timer
+- id: emlib_timer
 - id: app-log
 - id: iostream_usart
   instance:

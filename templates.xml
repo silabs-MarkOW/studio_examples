@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="ASCII"?>
+<?xml version='1.0' encoding='ASCII'?>
 <model:MDescriptors xmlns:model="http://www.silabs.com/ss/Studio.ecore">
-  <descriptors name="bt_soc_empty-log" label="Bluetooth - SoC Empty with log" description="Bluetooth - SoC Empty with added IO Stream USART and log components&#xA;">
+  <descriptors name="bt_soc_empty-log" label="Bluetooth - SoC Empty with log" description="Bluetooth - SoC Empty with added IO Stream USART and log components">
     <properties key="namespace" value="template.uc"/>
     <properties key="keywords" value="universal\ configurator"/>
     <properties key="solutionReferenceId" value="app.bluetooth.example.bt_soc_empty.bt_soc_empty.slcp"/>
@@ -143,5 +143,15 @@
     <properties key="core.partCompatibility" value="(mcu.arm.ef[mr]32.*|mcu.arm.wf.*)"/>
     <properties key="category" value="Bluetooth Examples"/>
     <properties key="quality" value="PRODUCTION"/>
+  </descriptors>
+  <descriptors name="coremark" label="Community Support - Coremark" description="Simple implenentation of Coremark">
+    <properties key="type" value="template"/>
+    <properties key="defaultName" value="coremark"/>
+    <properties key="namespace" value="template.uc"/>
+    <properties key="ideCompatibility" value="generic-template makefile-ide simplicity-ide visual-studio-code"/>
+    <properties key="template.projectFilePaths" value="coremark/empty.slcp"/>
+    <properties key="core.boardCompatibility" value=".*"/>
+    <properties key="core.partCompatibility" value="-.*siwg91.* (mcu.arm.ef[mr]32.*|mcu.arm.wf.*)"/>
+    <properties key="quality" value="EXPERIMENTAL"/>
   </descriptors>
 </model:MDescriptors>

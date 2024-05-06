@@ -157,7 +157,7 @@
     <properties key="type" value="template"/>
     <properties key="namespace" value="template.uc"/>
     <properties key="keywords" value="universal\ configurator"/>
-    <properties key="ideCompatibility" value="generic-template makefile-ide simplicity-ide visual-studio-code"/>
+    <properties key="ideCompatibility" value="simplicity-ide"/>
     <properties key="template.projectFilePaths" value="coremark/coremark.slcp"/>
     <properties key="core.boardCompatibility" value=".*"/>
     <properties key="core.partCompatibility" value="-.*siwg91.* (mcu.arm.ef[mr]32.*|mcu.arm.wf.*)"/>

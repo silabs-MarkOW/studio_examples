@@ -2,12 +2,12 @@ category: Example|Platform
 component:
 - id: sl_system
 - id: device_init
-- id: coremark
 - id: emlib_timer
 - id: iostream_usart
   instance:
   - vcom
 - id: printf
+- id: silabs_core_memory_manager
 configuration:
 - name: SL_IOSTREAM_USART_VCOM_CONVERT_BY_DEFAULT_LF_TO_CRLF
   value: '1'
@@ -21,6 +21,17 @@ define:
   value: '1'
 - name: HAS_PRINTF
   value: '1'
+- name: efm32_timerInit
+  value: 'efm32_timerInitFixed'
+- name: portable_malloc
+  value: 'malloc'
+- name: portable_free
+  value: 'free'
+- name: MEM_METHOD
+  value: '1'
+- name: ITERATIONS
+  value: 1000
+    
 description: Simple implenentation of Coremark
 filter:
 - name: Device Type
@@ -35,7 +46,11 @@ filter:
 include:
 - file_list:
   - path: app.h
+  - path: core_main.h
+  - path: coremark.h
+  - path: core_portme.h
   path: .
+
 label: Community Support - Coremark
 package: platform
 project_name: coremark
@@ -45,5 +60,11 @@ readme:
 source:
 - path: app.c
 - path: main.c
+- path: core_list_join.c
+- path: core_main.c
+- path: core_matrix.c
+- path: core_portme.c
+- path: core_state.c
+- path: core_util.c
 ui_hints:
   highlight: readme.md

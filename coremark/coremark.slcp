@@ -4,10 +4,10 @@ component:
 - id: device_init
 - id: coremark
 - id: emlib_timer
-- id: app-log
 - id: iostream_usart
   instance:
   - vcom
+- id: printf
 configuration:
 - name: SL_IOSTREAM_USART_VCOM_CONVERT_BY_DEFAULT_LF_TO_CRLF
   value: '1'

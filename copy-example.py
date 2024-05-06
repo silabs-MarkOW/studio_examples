@@ -6,13 +6,15 @@ import yaml
 parser = argparse.ArgumentParser()
 parser.add_argument('--name',required=True,help='Project name')
 parser.add_argument('--source',required=True,help='Folder to be copied')
-parser.add_argument('--quality',default='demo',help='Quality of project ... leave default')
+parser.add_argument('--quality',default='experimental',help='Quality of project ... leave default')
 parser.add_argument('--description',required=True,help='Longer description of project')
 parser.add_argument('--label',required=True,help='Project short description')
 parser.add_argument('--component',help='Comma delimited list of components')
 parser.add_argument('--configuration',help='Comma delimited list of configurations')
 parser.add_argument('--define',help='Comma delimited list of defines (X or X=Y)')
-parser.add_argument('--vcom',action='store_true',help='Comma delimited list of components')
+parser.add_argument('--vcom',action='store_true',help='Enable VCOM without additional drivers')
+parser.add_argument('--vcom-printf',action='store_true',help='Enable VCOM using Tiny Printf')
+parser.add_argument('--vcom-log',action='store_true',help='Enable VCOM using app_log')
 parser.add_argument('--debug',action='store_true')
 args = parser.parse_args()
 
@@ -133,6 +135,9 @@ def append(db,label,value) :
     if None == db.get(label) :
         db[label] = []
     db[label].append(value)
+
+if 1 == len(project.slcp) :
+    project.slcp[0].name = args.name + '.slcp'
     
 for slcp in project.slcp :
     db = yaml.load(open(slcp.path,'r'), Loader=yaml.SafeLoader)
@@ -161,18 +166,17 @@ for slcp in project.slcp :
                 db['define'].append({'name':tokens[0], 'value':tokens[1]})
             else :
                 db['configuration'].append({'name':tokens[0]})
-    if args.vcom :
-        append(db,'component',{'id':'app-log'})
+    if args.vcom or args.vcom_printf or args.vcom_app_log :
         append(db,'component',{'instance':['vcom'],'id':'iostream_usart'})
         append(db,'configuration',{'name':'SL_IOSTREAM_USART_VCOM_CONVERT_BY_DEFAULT_LF_TO_CRLF','value':'1'})
         append(db,'configuration',{'name':'SL_IOSTREAM_USART_VCOM_RESTRICT_ENERGY_MODE_TO_ALLOW_RECEPTION','value':'1'})
         append(db,'configuration',{'name':'SL_BOARD_ENABLE_VCOM','value':'1'})
+    if args.vcom_log :
+        append(db,'component',{'id':'app_log'})
+    if args.vcom_printf :
+        append(db,'component',{'id':'printf'})
     slcp.content = db
-    TP.set_slcp(slcp.descriptor, slcp.get_relpath())
-    TP.set_default_name(slcp.descriptor, args.name)
-    TP.set_quality(slcp.descriptor, args.quality)
-    target_template.add_descriptor(slcp.descriptor, db)
-            
+    target_template.add_descriptor(slcp.descriptor, db, slcp.get_relpath())
     
 target_template.write('/tmp/delete.xml')
 project.recursive_copy(project.root.name,project.root)

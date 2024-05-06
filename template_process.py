@@ -23,14 +23,25 @@ class TemplateXML :
                 if target == path :
                     return f
         return None
-    def add_descriptor(self, descriptor, app) :
+    def add_descriptor(self, descriptor, app, slcp) :
         orderedDict = OrderedDict([("name",app['project_name']),("label",app['label']),("description",app['description'])])
         descriptors = etree.SubElement(self.doc.getroot(), 'descriptors', orderedDict)
+        got_quality = False
         for p in descriptor.iter('properties') :
             key = p.attrib.get('key')
             value = p.attrib.get('value')
+            if 'type' == key : continue
+            if 'defaultName' == key : continue
+            if 'template.projectFilePaths' == key :
+                value = slcp
+            if 'quality' == key :
+                value = app['quality'].upper()
+                got_quality = True
             properties = etree.SubElement(descriptors, 'properties',
                                           key=key, value=value)
+        if not got_quality :
+            properties = etree.SubElement(descriptors, 'properties',
+                                          key='quality', value=app['quality'].upper())
     def write(self,path) :
         self.doc.write(path, pretty_print=True, xml_declaration=True)#,encoding='utf-8')
         return
@@ -38,26 +49,3 @@ class TemplateXML :
         fh = open(path,'w')
         fh.write(text)
         fh.close()
-        
-def set_property(descriptor, property, value) :
-    if etree._Element != type(descriptor) :
-        raise ValueError(type(descriptor))
-    found = False
-    for p in descriptor.iter() :
-        key = p.attrib.get('key')
-        if None == key :
-            continue
-        if property == key :
-            p.attrib['value'] = value
-            return
-    properties = etree.SubElement(descriptor, 'properties',
-                                  key=property, value=value)
-    
-def set_slcp(d, slcp) :
-    set_property(d, 'template.projectFilePaths', slcp)
-
-def set_default_name(d,name) :
-    set_property(d, 'defaultName', name)
-
-def set_quality(d, quality) :
-    set_property(d, 'quality', quality.upper())

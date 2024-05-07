@@ -45,11 +45,15 @@ the Manufacturer data is structure containing:
 * uint16 min   : minimum sample in set
 
 It should be noted that since the device wakes up to send the current
-advertisement, the data advertised will be from samples during the
-previous EM2 duration.
+advertisement, the data advertised will be from samples during the EM2
+duration before the previous advertisement.  This is illustrated
+below: The line "sample" indicates individual samples made by IADC.
+"Advertised payload" indicates the processed samples contained in the
+OTA packet.  "Payload setting" represents the time at which samples
+are copied from FIFO and processing into the next advertising payload.
 
 <pre>
-sample: 11 12 13 14 15           16 17 18 19 20
-advertised payload:     [6-10]                  [11-15]
-sample copy / payload setting: X                        X
+sample: 11 12 13 14 15           16 17 18 19 20         21 22 23 24 25 
+advertised payload:     [6-10]                  [11-15]                [16-20]
+payload setting:                X                        X                      X
 </pre>

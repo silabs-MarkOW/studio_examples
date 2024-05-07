@@ -73,7 +73,7 @@ class Project :
         for entry in os.listdir(path) :
             entryPath = path+'/'+entry
             if os.path.isdir(entryPath) :
-                dir.add(self.recurse(entryPath))
+                dir.add(entry,self.recurse(entryPath,entry))
             elif os.path.isfile(entryPath) :
                 file = self.File(entry,entryPath)
                 if len(entry) > 5 and entry.find('.slcp') == (len(entry) - 5) :
@@ -96,7 +96,7 @@ class Project :
                               default_flow_style=False)
                 print('copy %s %s'%(source,dest))
             elif self.Folder == type(obj) :
-                recursive_copy(npath,obj)
+                self.recursive_copy(npath,obj)
         
 project = Project(args.name,args.source)
 
@@ -166,7 +166,7 @@ for slcp in project.slcp :
                 db['define'].append({'name':tokens[0], 'value':tokens[1]})
             else :
                 db['configuration'].append({'name':tokens[0]})
-    if args.vcom or args.vcom_printf or args.vcom_app_log :
+    if args.vcom or args.vcom_printf or args.vcom_log :
         append(db,'component',{'instance':['vcom'],'id':'iostream_usart'})
         append(db,'configuration',{'name':'SL_IOSTREAM_USART_VCOM_CONVERT_BY_DEFAULT_LF_TO_CRLF','value':'1'})
         append(db,'configuration',{'name':'SL_IOSTREAM_USART_VCOM_RESTRICT_ENERGY_MODE_TO_ALLOW_RECEPTION','value':'1'})

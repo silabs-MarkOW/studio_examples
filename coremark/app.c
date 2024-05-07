@@ -20,6 +20,10 @@
 
 unsigned int CoreMark_Main(void);
 extern void *_printf_float;
+
+struct cpuid {
+  uint32_t revision:4, partno:12, architecture:4, variant:4, implementer:8;
+};
 /***************************************************************************//**
  * Initialize application.
  ******************************************************************************/
@@ -37,6 +41,15 @@ void app_init(void)
   printf("Elapsed time: %.2f\n",elapsed);
   printf("Coremark: %.2f Iterations/s\n",coremark);
   printf("Coremark/MHz: %.3f\n",coremark/MHz);
+  uint32_t uicpuid = *(uint32_t*)0xe000ed00;
+  struct cpuid *cpuid = &uicpuid;
+  printf("CPUID:\n  architecture: ");
+  if(0xc == cpuid->architecture) printf("ARMv6-M\n");
+  else printf("0x%x\n",cpuid->architecture);
+  printf("  partno: ");
+  if(0xc20 == cpuid->partno) printf("Cortex-M0");
+  else if(0xc60 == cpuid->partno) printf("Cortex-M0+\n");
+  else printf("%03x\n",cpuid->partno);
 }
 
 /***************************************************************************//**

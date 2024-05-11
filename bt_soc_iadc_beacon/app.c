@@ -78,7 +78,12 @@ void app_init(void)
 
   // EM2 optimization
   // Safe enabling of minimal RAM retention requires reducing LENGTH of RAM to 0x6000 in linker script
-  SYSCFG->DMEM0RETNCTRL = 2;
+#ifdef _SILICON_LABS_32B_SERIES_2_CONFIG_2
+  SYSCFG->DMEM0RETNCTRL = 2; // power down RAM block 1 (8k), RAM block 0 (24k) retained
+#endif
+#ifdef _SILICON_LABS_32B_SERIES_2_CONFIG_7
+  SYSCFG->DMEM0RETNCTRL = 6; // power down RAM blocks 1 (8k) and 2 (32k), RAM block 0 (24k) retained
+#endif
   // This will disable clocking of debug in EM2
   EMU->CTRL_CLR = 1u << _EMU_CTRL_EM2DBGEN_SHIFT;
 

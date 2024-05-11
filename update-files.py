@@ -7,6 +7,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--name',required=True,help='Project name')
 parser.add_argument('--studio',required=True,help='Live Studio project to copy from')
 parser.add_argument('--debug',action='store_true')
+parser.add_argument('--write',action='store_true')
 args = parser.parse_args()
 
 if args.debug :
@@ -55,3 +56,11 @@ for file in project.regular_files() :
         continue
     if b.find('\r') >= 0 : print('Has CR')
     print(studio_filename)
+    if args.write :
+        open(file.get_relpath(),'w').write(b)
+    else :
+        command = 'diff -w %s %s'%(file.get_relpath(),studio_filename)
+        os.system(command)
+        
+if not args.write :
+    print('No modifications made, use --write to force')

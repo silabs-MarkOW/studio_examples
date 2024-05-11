@@ -22,9 +22,43 @@
 unsigned int CoreMark_Main(void);
 extern void *_printf_float;
 
-struct cpuid {
-  uint32_t revision:4, partno:12, architecture:4, variant:4, implementer:8;
-};
+void print_cpuid(void) {
+  uint32_t uint32 = *(uint32_t*)0xe000ed00;
+  struct cpuid {
+    uint32_t revision:4, partno:12, constant:4, variant:4, implementer:8;
+  } *cpuid = (struct cpuid *)&uint32;
+  const char *architecture = "unknown";
+  const char *partno = "unknown: 0x3x (constant: 0x%x)";
+  switch(cpuid->constant) {
+    case 0xc:
+      switch(cpuid->partno) {
+        case 0xc20:
+          architecture = "ARMv6-M";
+          partno = "Cortex-M0";
+          break;
+        case 0xc60:
+          architecture = "ARMv6-M";
+          partno = "Cortex-M0+";
+          break;
+      }
+      break;
+    case 0xf:
+      switch(cpuid->partno) {
+        case 0xc24:
+          architecture = "ARMv7-M";
+          partno = "Cortex-M4";
+          break;
+        case 0xd21:
+          architecture = "ARMv8-M";
+          partno = "Cortex-M33";
+          break;
+        }
+      break;
+  }
+  printf("CPUID:\n  architecture: %s\n  partno: ", architecture);
+  printf(partno,cpuid->partno, cpuid->constant);
+  printf("\n  revision: %d\n  variant: %d\n",cpuid->revision, cpuid->variant);
+}
 /***************************************************************************//**
  * Initialize application.
  ******************************************************************************/
@@ -44,18 +78,7 @@ void app_init(void)
   printf("Elapsed time: %.2f%s\n",elapsed,(elapsed < 10)?" (Consider increasing ITERATIONS)":"");
   printf("Coremark: %.2f Iterations/s\n",coremark);
   printf("Coremark/MHz: %.3f\n",coremark/MHz);
-  uint32_t uicpuid = *(uint32_t*)0xe000ed00;
-  struct cpuid *cpuid = (struct cpuid *)&uicpuid;
-  printf("CPUID:\n  architecture: ");
-  if(0xc == cpuid->architecture) printf("ARMv6-M\n");
-  else if (0x0f == cpuid->architecture) printf("ARMv8-M\n");
-  else printf("0x%x\n",cpuid->architecture);
-  printf("  partno: ");
-  if(0xc20 == cpuid->partno) printf("Cortex-M0");
-  else if(0xc60 == cpuid->partno) printf("Cortex-M0+\n");
-  else if(0xd21 == cpuid->partno) printf("Cortex-M33\n");
-  else printf("%03x\n",cpuid->partno);
-  printf("  revision: %d\n",cpuid->revision);
+  print_cpuid();
 }
 
 /***************************************************************************//**

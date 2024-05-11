@@ -26,7 +26,7 @@ define:
 - name: ITERATIONS
   value: 1000
 - name: SL_MEMORY_HEAP
-  value: 3072
+  value: 4096
     
 description: Simple implenentation of Coremark
 filter:

@@ -172,7 +172,12 @@ void portable_fini(core_portable *p)
 }
 
 void *portable_malloc(size_t size) {
-  return malloc(size);
+  void *result = malloc(size);
+  if(NULL == result) {
+      printf("malloc(%zd) returns %p (IAR does not expand heap to fill available space)\n",size,result);
+      while(1);
+  }
+  return result;
 }
 
 void portable_free(void *p) {

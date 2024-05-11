@@ -1,6 +1,5 @@
 import argparse
 import os
-import template_process as TP
 import yaml
 from project import Project
 
@@ -15,7 +14,6 @@ if args.debug :
 
 if not os.path.exists('templates.xml') :
     raise RuntimeError('Run this script from root of repo')
-target_template = TP.TemplateXML('templates.xml')
 
 for ch in args.name :
     if not ch.isalnum() and '_' != ch :
@@ -52,7 +50,8 @@ for file in project.regular_files() :
             raise RuntimeError
         studio_filename = args.studio+'/'+directory+'/'+file.name
     a = open(file.get_relpath(),'r').read()
-    b = open(studio_filename,'r').read()
+    b = open(studio_filename,'r').read().replace('\r\n','\n')
     if a == b :
         continue
+    if b.find('\r') >= 0 : print('Has CR')
     print(studio_filename)

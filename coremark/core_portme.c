@@ -150,8 +150,6 @@ void portable_init(core_portable *p, int *argc, char *argv[])
 #if VERIFY_TICKCOUNT
   uint32_t tstart, tstop;
 #endif
-  /* Chip errata */
-  CHIP_Init();
 
   /* Initialize TIMER */
   efm32_timerInit();

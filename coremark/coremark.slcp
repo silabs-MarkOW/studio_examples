@@ -24,7 +24,7 @@ define:
 - name: MEM_METHOD
   value: '1'
 - name: ITERATIONS
-  value: 1000
+  value: 3000
 - name: SL_HEAP_SIZE
   value: 3072
     

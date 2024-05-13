@@ -1,9 +1,13 @@
 # Beacon with IADC
 
+Tested on efr32xg22 (BRD4182A) and efr32xg27 (BRD4110B).
+
 Implementation of a low power beacon with the following optimizations:
 
-* Turn of clocking to debug port during EM2
-* EM2 RAM retention of last 8k RAM --- note this requires reducing LENGTH of RAM in linker script **this is not performed by this example**
+* Turn of clocking to debug port during EM2 (both xG22 and xG27)
+* EM2 RAM retention of unused RAM block(s) --- note this requires reducing LENGTH of RAM in linker script **this is not performed by this example**
+** xG22 RAM block 1 (8k) is not retained
+** xG27 RAM block 1 (8k) and RAM block 2 (32k) are not retained
 * Low frequency voltage scaling in EM0/1
 
 ## IADC operation

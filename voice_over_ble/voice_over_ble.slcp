@@ -57,31 +57,32 @@ configuration:
   - psa_crypto
   name: SL_PSA_KEY_USER_SLOT_COUNT
   value: '0'
-- name:  SL_EMLIB_GPIO_INIT_COPY_FROM_FIFO_PORT
-  value: gpioPortA
-- name:  SL_EMLIB_GPIO_INIT_COPY_FROM_FIFO_PIN
-  value: 6
 - name:  SL_EMLIB_GPIO_INIT_COPY_FROM_FIFO_MODE
   value: gpioModePushPull
 - name:  SL_EMLIB_GPIO_INIT_COPY_FROM_FIFO_DOUT
   value: 0
-- name:  SL_EMLIB_GPIO_INIT_COPY_TO_FIFO_PORT
-  value: gpioPortA
-- name:  SL_EMLIB_GPIO_INIT_COPY_TO_FIFO_PIN
-  value: 9
 - name:  SL_EMLIB_GPIO_INIT_COPY_TO_FIFO_MODE
   value: gpioModePushPull
 - name:  SL_EMLIB_GPIO_INIT_COPY_TO_FIFO_DOUT
   value: 0
-- name:  SL_EMLIB_GPIO_INIT_ISR_CALLBACK_PORT
-  value: gpioPortA
-- name:  SL_EMLIB_GPIO_INIT_ISR_CALLBACK_PIN
-  value: 8
 - name:  SL_EMLIB_GPIO_INIT_ISR_CALLBACK_MODE
   value: gpioModePushPull
 - name:  SL_EMLIB_GPIO_INIT_ISR_CALLBACK_DOUT
   value: 0
-  
+define:
+- name:  SL_EMLIB_GPIO_INIT_COPY_FROM_FIFO_PORT
+  value: gpioPortA
+- name:  SL_EMLIB_GPIO_INIT_COPY_FROM_FIFO_PIN
+  value: 6
+- name:  SL_EMLIB_GPIO_INIT_COPY_TO_FIFO_PORT
+  value: gpioPortA
+- name:  SL_EMLIB_GPIO_INIT_COPY_TO_FIFO_PIN
+  value: 9
+- name:  SL_EMLIB_GPIO_INIT_ISR_CALLBACK_PORT
+  value: gpioPortA
+- name:  SL_EMLIB_GPIO_INIT_ISR_CALLBACK_PIN
+  value: 8
+
 description: Extension of SDK example Bluetooth - SoC Voice
 filter:
 - name: Wireless Technology

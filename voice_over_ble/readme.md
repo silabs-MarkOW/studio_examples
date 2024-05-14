@@ -1,5 +1,16 @@
 # SoC - Voice
 
+This is an extension of the [Bluetooth - SoC Voice](https://github.com/SiliconLabs/gecko_sdk/app/bluetooth/example/bt_soc_voice) project.  It includes the following changes:
+* Expansion of VoBLE GATT Service (UUID: b7ef1193-dc2e-4362-93d3-df429eb3ad10):
+ * Audio Data (UUID: 00ce7a72-ec08-473d-943e-81ec27fdc5f2) : Notify --- sample data is wrapped in struct packet (app.c)
+ * Sample Rate (UUID: 00ce7a72-ec08-473d-943e-81ec27fdc601) : Read/Write --- 16-bit sample rate in Hz, Read returns actual sample rate.
+ * Filter Enable (UUID: 00ce7a72-ec08-473d-943e-81ec27fdc602) : Write --- not currently implemented
+ * Encoding Enable (UUID: 00ce7a72-ec08-473d-943e-81ec27fdc603) : Write --- not currently implemented
+ * Transfer Status (UUID: 00ce7a72-ec08-473d-943e-81ec27fdc604) : Notify --- notification sampling is active (0/1)
+ * Audio Channels (UUID: 00ce7a72-ec08-473d-943e-81ec27fdc605) : Write --- values != 1 not currently supported
+ * Stream Enable (UUID: a5a31dd4-77a4-4c9a-a4b1-639f5e42714d) : Write --- **NEW** turn stream on or off (original was button controlled)
+ * Resend Request (UUID: 2be6654d-be90-4cf6-8d4c-4e95e1993d6a : Write --- **NEW** list 16-bit packet indexes (struct packet) to request resend of missed packets
+ 
 This is a Voice over Bluetooth Low Energy example. It is supported by a Thunderboard Sense 2 board and demonstrates how to send voice data over GATT, which is acquired from the on-board microphone.
 
 > Note: this example expects a specific Gecko Bootloader to be present on your device. For details see the Troubleshooting section.

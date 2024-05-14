@@ -33,8 +33,9 @@ if not os.path.isdir(args.studio) :
 project = Project(args.name)
 #print([x.get_relpath() for x in project.regular_files()])
 
+changes = False
 for file in project.regular_files() :
-    studio_filename = args.studio+'/'+file.name
+    studio_filename = args.studio+'/'+file.get_relpath(from_project_root=True)
     if not os.path.exists(studio_filename) :
         directory = None
         for slcp in project.slcp :
@@ -48,19 +49,32 @@ for file in project.regular_files() :
                 else :
                     directory = 'config/'+directory
         if None == directory :
-            raise RuntimeError
+            raise RuntimeError(studio_filename)
         studio_filename = args.studio+'/'+directory+'/'+file.name
-    a = open(file.get_relpath(),'r').read()
-    b = open(studio_filename,'r').read().replace('\r\n','\n')
+    binary_mode = False
+    for slcp in project.slcp :
+        if 'other_file' == project.paths[slcp][file.get_relpath(from_project_root=True)] :
+            binary_mode = True
+    if binary_mode :
+        a = open(file.get_relpath(),'rb').read()
+        b = open(studio_filename,'rb').read()
+    else :
+        a = open(file.get_relpath(),'r').read()
+        b = open(studio_filename,'r').read().replace('\r\n','\n')
     if a == b :
         continue
+    changes = True
     if b.find('\r') >= 0 : print('Has CR')
-    print(studio_filename)
     if args.write :
-        open(file.get_relpath(),'w').write(b)
-    else :
+        print('Updating %s'%(file.get_relpath()))
+        if binary_mode :
+            open(file.get_relpath(),'wb').write(b)
+        else :
+            open(file.get_relpath(),'w').write(b)
+    elif args.debug :
         command = 'diff -w %s %s'%(file.get_relpath(),studio_filename)
         os.system(command)
+        print('%s is not up to date'%(file.get_relpath()))
         
-if not args.write :
+if changes and not args.write :
     print('No modifications made, use --write to force')

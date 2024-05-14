@@ -165,4 +165,19 @@
     <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
     <properties key="filters" value="Device\ Type|SoC Project\ Difficulty|Beginner Wireless\ Technology|Bluetooth"/>
   </descriptors>
+  <descriptors name="voice_over_ble" label="Bluetooth - SoC Voice over BLE" description="Extension of SDK example Bluetooth - SoC Voice">
+    <properties key="namespace" value="template.uc"/>
+    <properties key="keywords" value="universal\ configurator"/>
+    <properties key="solutionReferenceId" value="app.bluetooth.example.bt_soc_voice.bt_soc_voice.slcp"/>
+    <properties key="projectFilePaths" value="voice_over_ble/voice_over_ble.slcp"/>
+    <properties key="readmeFiles" value="voice_over_ble/readme.md"/>
+    <properties key="boardCompatibility" value="brd2601a brd2601b brd4166a brd4184a brd4184b com.silabs.board.none"/>
+    <properties key="partCompatibility" value=".*efr32bg22.* .*efr32mg12p.* .*efr32mg24.*"/>
+    <properties key="ideCompatibility" value="generic-template iar-embedded-workbench makefile-ide simplicity-ide visual-studio-code"/>
+    <properties key="toolchainCompatibility" value="gcc iar segger"/>
+    <properties key="category" value="Bluetooth Examples"/>
+    <properties key="quality" value="EXPERIMENTAL"/>
+    <properties key="stockConfigCompatibility" value="com.silabs.ss.framework.project.toolchain.core.default"/>
+    <properties key="filters" value="Device\ Type|SoC Project\ Difficulty|Advanced Wireless\ Technology|Bluetooth"/>
+  </descriptors>
 </model:MDescriptors>

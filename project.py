@@ -8,13 +8,13 @@ class Project :
             self.path = path
             self.folder = None
             self.content = None
-        def get_relpath(self) :
+        def get_relpath(self,from_project_root=False) :
             result = []
             obj = self
             while None != obj :
                 result = [obj.name]+result
                 obj = obj.folder
-            return '/'.join(result)
+            return '/'.join(result[int(from_project_root):])
     class Folder :
         def __init__(self, name, path=None) :
             self.name = name
@@ -28,6 +28,7 @@ class Project :
         self.name = os.path.basename(path)
         self.slcp = []
         self.root = self.recurse(path,self.name)
+        self.get_paths()
     def set_name(self, name) :
         self.name = name
         self.root.name = name
@@ -76,4 +77,37 @@ class Project :
                 print('copy %s %s'%(source,dest))
             elif self.Folder == type(obj) :
                 self.recursive_copy(npath,obj)
-        
+    def get_paths(self, object=None,key=None) :
+        if None == object :
+            self.paths = {}
+            for slcp in self.slcp :
+                self.paths[slcp] = self.get_paths(slcp.content)
+            return
+        total = {}
+        returns = []
+        object_type = type(object)
+        if dict == object_type :
+            for key in object :
+                if 'ui_hints' == key : continue
+                value = object[key]
+                if 'path' == key :
+                    if None != total.get(value) :
+                        raise RuntimeError(value)
+                    total[value] = key
+                else :
+                    db = self.get_paths(value,key)
+                    for subkey in db :
+                        value = db[subkey]
+                        if None != total.get(value) :
+                            raise RuntimeError(value)
+                        total[subkey] = key
+        elif list == object_type :
+            for subobject in object :
+                db = self.get_paths(subobject,key)
+                for subkey in db :
+                    value = db[subkey]
+                    if None != total.get(value) :
+                        raise RuntimeError(value)
+                    total[subkey] = key
+        return total
+    
